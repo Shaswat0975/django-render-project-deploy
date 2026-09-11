@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  body{
+    background: linear-gradient(135deg, #e0eafc,#cfdef3);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+span{
+    background: linear-gradient(135deg, #2c3e50,#34495e);
+    color: #fff;
+    padding: 25px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+h1{
+    letter-spacing: 1px;
+    font-size: 2.3rem;
+}
+.search-container{
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    top: 20px;
+}
+.search-container h2{
+    margin-bottom: 20px;
+    color: #2c3e50;
+    letter-spacing: 0.5px;
+}
+form{
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+ input{
+
+ padding: 12px 15px;
+ border: 1px solid #3498db;
+ border-radius: 25px;
+ width: 70%;
+ outline: none;
+ font-size: 16px;
+}
+button{
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+
+}
+.back{
+    font-weight: bold;
+    position: fixed;
+    right:20px;
+    bottom: 20px;
+    color: white;
+    background: #2563eb;
+    padding: 12px 20px;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+</style>
+</head>
+<body>
+    <span>
+      <h1>Search Records</h1>
+    </span>
+    <div class="search-container">
+        <h2>Find Student Records</h2>
+        <form method="post" action="{% url 'search_records' %}">
+            {% csrf_token %}
+            <input type="text" name="sname" placeholder="Enter the Student Name">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <a href="{% url 'AdminHome' %}"  class="back">Back to Dashboard</a> 
+</body>
+</html>

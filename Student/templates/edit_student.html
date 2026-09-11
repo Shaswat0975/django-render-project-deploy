@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        body{
+            background:#f3f4f6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+        }
+        .form-box{
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            background-color: rgba(255,255,255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0, 0, 0.15);
+        }
+        h2{
+            text-align: center;
+            margin-bottom: 20px;
+            color:red;
+        }
+        label{
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+    .input,select{
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: 0.3s;
+        }
+        .btn-update{
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            text-align: center;
+            width: 80%;
+            position: relative;
+            left: 50px;
+            top: 10px;
+        }
+        .back{
+        font-weight: bold;
+        position: fixed;
+        right:20px;
+        bottom: 20px;
+        color: white;
+        background: #2563eb;
+        padding: 12px 20px;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+    </style>
+</head>
+<body>
+    <div class="form-box">   
+        <div class="form-container">
+            <h2>Edit Student</h2>
+            <form  method="post">
+                {% csrf_token %}
+                <label>Full Name</label>
+                <input type="text" name="fname" class="input" value={{data.name}}>
+
+                <label>Email</label>
+                <input type="email" name="email" class="input" value={{data.email}}>
+
+                <label>College</label>
+                <input type="text" name="college" class="input" value={{data.college}}>
+
+                <label>City</label>
+                <input type="text" name="city" class="input" value={{data.city}}>
+
+                <label>Join Date</label>
+                <input type="date" name="jdate" class="input" value={{data.jdate}}>
+
+                <label>Total Fee</label>
+                <input type="number" name="tfee" class="input" value={{data.total_fee}}>
+
+                <label>Paid Fee</label>
+                <input type="number" name="pfee" class="input" value={{data.paid_fee}}>
+
+                <label>Left fee</label>
+                <input type="number" name="lfee" class="input" value={{data.left_fee}}>
+
+                <label>Phone</label>
+                <input type="tel" name="ph" class="input" maxlength="10" value={{data.phone}}>
+
+                {% if data.technology == "Python" %}
+                <label> Select Technology</label>
+                <select name="technology">
+                    <option selected disabled>Select Technology</option>
+                    <option value="Python" selected>Python</option>
+                    <option value="Php">Php</option>
+                    <option value="Mern">Mern</option>
+                    <option value="Java">Java</option>
+                    <option value="asp.Net">Asp.net</option>
+                </select>
+                {% endif %}
+
+                {% if data.technology == "Php" %}
+                <label> Select Technology</label>
+                <select name="technology">
+                    <option selected disabled>Select Technology</option>
+                    <option value="Python">Python</option>
+                    <option value="Php" selected>Php</option>
+                    <option value="Mern">Mern</option>
+                    <option value="Java">Java</option>
+                    <option value="asp.Net">Asp.net</option>
+                </select>
+                {% endif %}
+
+                {% if data.technology == "Mern" %}
+                <label> Select Technology</label>
+                <select name="technology">
+                    <option selected disabled>Select Technology</option>
+                    <option value="Python">Python</option>
+                    <option value="Php">Php</option>
+                    <option value="Mern" selected>Mern</option>
+                    <option value="Java">Java</option>
+                    <option value="asp.Net">Asp.net</option>
+                </select>
+                {% endif %}
+
+                {% if data.technology == "Java" %}
+                <label> Select Technology</label>
+                <select name="technology">
+                    <option selected disabled>Select Technology</option>
+                    <option value="Python">Python</option>
+                    <option value="Php">Php</option>
+                    <option value="Mern">Mern</option>
+                    <option value="Java" selected>Java</option>
+                    <option value="asp.Net">Asp.net</option>
+                </select>
+                {% endif %}
+
+                {% if data.technology == "asp.Net" %}
+                <label> Select Technology</label>
+                <select name="technology">
+                    <option selected disabled>Select Technology</option>
+                    <option value="Python">Python</option>
+                    <option value="Php">Php</option>
+                    <option value="Mern">Mern</option>
+                    <option value="Java">Java</option>
+                    <option value="asp.Net" selected>Asp.net</option>
+                </select>
+                {% endif %}
+                <input type="submit" value="Update" class="btn-update">
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'AdminHome' %}"  class="back">Back to Dashboard</a>
+    {% if error == "no" %}
+    <script>
+        alert("Data updated Successfully")
+        window.location="{% url 'view_students' %}"
+    </script>
+    {% endif %}
+
+    {% if error == "yes" %}
+    <script>
+        alert("Something went wrong")
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Details</title>
+    <style>
+        body{
+            background-color: #f4f4f4;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        }
+        .card{
+            width: 600px;
+            margin: 40px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+        table td{
+            padding: 12px;
+            border-bottom:1px solid #ddd ;
+
+        }
+        h2{
+            text-align: center;
+
+        }
+        .btn{
+            display: inline-block;
+            text-decoration: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            padding: 12px 25px;
+            margin-top: 20px;
+        }
+        .btn:hover{
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Fee Details</h2>
+        <table>
+            <tr>
+                <td><b>Student Name</b></td>
+                <td>{{ student.name }}</td>
+            </tr>
+
+            <tr>
+                <td><b>Course</b></td>
+                <td>{{ student.technology }}</td>
+            </tr>
+
+            <tr>
+                <td><b>Total Fee</b></td>
+                <td>{{ student.total_fee }}&nbsp;&#8377</td>
+            </tr>
+
+            <tr>
+                <td><b>Paid Fee</b></td>
+                <td>{{ student.paid_fee }}&nbsp;&#8377</td>
+            </tr>
+
+            <tr>
+                <td><b>Remaining Fee</b></td>
+                <td>{{ student.left_fee }}&nbsp;&#8377</td>
+            </tr>
+        </table>
+        <center><a href="{% url 'fee_receipt' %}" class="btn">Download Reciept(pdf)</a></center>
+    </div>
+</body>
+</html>

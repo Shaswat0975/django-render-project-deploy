@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Student Record Management System</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f7ff;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+
+        /* ---------- Main Container ---------- */
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 70px 25px;
+        }
+
+        /* ---------- Header ---------- */
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .about-header .icon {
+            width: 85px;
+            height: 85px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            color: white;
+            border-radius: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 42px;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .about-header .tag {
+            display: inline-block;
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .about-header h1 {
+            font-size: 42px;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .about-header h1 span {
+            color: #2563eb;
+        }
+
+        .about-header p {
+            max-width: 700px;
+            margin: auto;
+            color: #64748b;
+            font-size: 17px;
+        }
+
+        /* ---------- Introduction ---------- */
+
+        .intro-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 35px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .intro-box h2 {
+            color: #0f172a;
+            font-size: 27px;
+            margin-bottom: 15px;
+        }
+
+        .intro-box h2 i {
+            color: #2563eb;
+            margin-right: 10px;
+        }
+
+        .intro-box p {
+            color: #64748b;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---------- Information Cards ---------- */
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .info-card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .info-card .card-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .blue {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .purple {
+            background: #ede9fe;
+            color: #7c3aed;
+        }
+
+        .green {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .orange {
+            background: #ffedd5;
+            color: #ea580c;
+        }
+
+        .pink {
+            background: #fce7f3;
+            color: #db2777;
+        }
+
+        .cyan {
+            background: #cffafe;
+            color: #0891b2;
+        }
+
+        .info-card h3 {
+            font-size: 20px;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .info-card p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* ---------- Main Content ---------- */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .content-box {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .content-box h2 {
+            font-size: 25px;
+            color: #0f172a;
+            margin-bottom: 18px;
+        }
+
+        .content-box h2 i {
+            color: #2563eb;
+            margin-right: 10px;
+        }
+
+        .content-box p {
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .content-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ---------- List ---------- */
+
+        .simple-list {
+            list-style: none;
+        }
+
+        .simple-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .simple-list li i {
+            color: #2563eb;
+            margin-top: 5px;
+        }
+
+        /* ---------- Technology ---------- */
+
+        .technology-box {
+            background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 35px;
+            border: 1px solid #dbeafe;
+        }
+
+        .technology-box h2 {
+            font-size: 27px;
+            color: #0f172a;
+            margin-bottom: 12px;
+        }
+
+        .technology-box p {
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        .tech-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tech-item {
+            background: white;
+            padding: 12px 22px;
+            border-radius: 30px;
+            color: #2563eb;
+            font-weight: 600;
+            border: 1px solid #dbeafe;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-item i {
+            font-size: 20px;
+        }
+
+        /* ---------- Academic Project ---------- */
+
+        .project-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .project-box h2 {
+            font-size: 27px;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
+        .project-box h2 i {
+            color: #7c3aed;
+            margin-right: 10px;
+        }
+
+        .project-box p {
+            max-width: 850px;
+            margin: auto;
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        /* ---------- Footer ---------- */
+
+        .footer {
+            text-align: center;
+            margin-top: 45px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* ---------- Responsive Design ---------- */
+
+        @media (max-width: 900px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about-container {
+                padding: 45px 15px;
+            }
+
+            .about-header h1 {
+                font-size: 32px;
+            }
+
+            .about-header p {
+                font-size: 15px;
+            }
+
+            .intro-box,
+            .content-box,
+            .technology-box,
+            .project-box {
+                padding: 25px;
+            }
+
+            .intro-box h2,
+            .technology-box h2,
+            .project-box h2 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <div class="about-container">
+
+        <!-- Header -->
+        <div class="about-header">
+
+            <div class="icon">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+
+            <span class="tag">ABOUT OUR PROJECT</span>
+
+            <h1>
+                Student Record <span>Management System</span>
+            </h1>
+
+            <p>
+                A simple, efficient, and organized solution for
+                managing student information in one place.
+            </p>
+
+        </div>
+
+        <!-- Introduction -->
+        <div class="intro-box">
+
+            <h2>
+                <i class="fa-solid fa-circle-info"></i>
+                About the System
+            </h2>
+
+            <p>
+                The Student Record Management System is a web-based
+                application developed to make the process of managing
+                student information easier and more efficient.
+            </p>
+
+            <p>
+                It provides a centralized platform where student
+                records can be stored, organized, and accessed
+                whenever required. The system helps reduce manual
+                paperwork and makes record management more convenient.
+            </p>
+
+            <p>
+                This project is designed with a simple and
+                user-friendly interface so that student information
+                can be managed without unnecessary complexity.
+            </p>
+
+        </div>
+
+        <!-- Information Cards -->
+        <div class="info-grid">
+
+            <div class="info-card">
+                <div class="card-icon blue">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+
+                <h3>Our Purpose</h3>
+
+                <p>
+                    To provide an easy and organized way to maintain
+                    student records and reduce the difficulties
+                    of manual record management.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <div class="card-icon purple">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+
+                <h3>Our Vision</h3>
+
+                <p>
+                    To create a reliable and user-friendly system
+                    that makes student information management
+                    simple, accurate, and efficient.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <div class="card-icon green">
+                    <i class="fa-solid fa-flag-checkered"></i>
+                </div>
+
+                <h3>Our Goal</h3>
+
+                <p>
+                    To save time, reduce paperwork, and help
+                    educational institutions manage student
+                    information more effectively.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Features -->
+        <div class="content-grid">
+
+            <div class="content-box">
+
+                <h2>
+                    <i class="fa-solid fa-star"></i>
+                    Key Features
+                </h2>
+
+                <ul class="simple-list">
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <span>Easy management of student information.</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <span>Organized storage of important records.</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <span>Quick access to student details.</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <span>Simple and user-friendly interface.</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <span>Reduced manual effort and paperwork.</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="content-box">
+
+                <h2>
+                    <i class="fa-solid fa-users"></i>
+                    Who Can Use It?
+                </h2>
+
+                <p>
+                    The Student Record Management System can be
+                    useful for schools, colleges, and educational
+                    institutions that need to maintain student
+                    information in an organized manner.
+                </p>
+
+                <p>
+                    It can also be used as an academic project
+                    to understand how web applications and
+                    database management systems work together.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Benefits -->
+        <div class="content-grid">
+
+            <div class="content-box">
+
+                <h2>
+                    <i class="fa-solid fa-chart-line"></i>
+                    Benefits
+                </h2>
+
+                <ul class="simple-list">
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <span>Saves time in maintaining records.</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <span>Helps keep information organized.</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <span>Reduces the chances of misplaced records.</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        <span>Makes information easier to access.</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="content-box">
+
+                <h2>
+                    <i class="fa-solid fa-lightbulb"></i>
+                    Why This Project Matters
+                </h2>
+
+                <p>
+                    Student information is an important part of
+                    educational administration. Maintaining it
+                    properly helps institutions work more smoothly.
+                </p>
+
+                <p>
+                    This project demonstrates how technology can
+                    be used to solve everyday problems and improve
+                    the way student records are managed.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Technology -->
+        <div class="technology-box">
+
+            <h2>
+                <i class="fa-solid fa-code"></i>
+                Technologies Used
+            </h2>
+
+            <p>
+                This project is developed using the following
+                technologies:
+            </p>
+
+            <div class="tech-list">
+
+                <div class="tech-item">
+                    <i class="fa-brands fa-python"></i>
+                    Python
+                </div>
+
+                <div class="tech-item">
+                    <i class="fa-solid fa-server"></i>
+                    Django
+                </div>
+
+                <div class="tech-item">
+                    <i class="fa-brands fa-html5"></i>
+                    HTML5
+                </div>
+
+                <div class="tech-item">
+                    <i class="fa-brands fa-css3-alt"></i>
+                    CSS3
+                </div>
+
+                <div class="tech-item">
+                    <i class="fa-solid fa-database"></i>
+                    SQLite
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Academic Project -->
+        <div class="project-box">
+
+            <h2>
+                <i class="fa-solid fa-book-open"></i>
+                Academic Project
+            </h2>
+
+            <p>
+                The Student Record Management System is developed
+                as an academic project to demonstrate practical
+                knowledge of web development, database management,
+                and software design. It provides an opportunity
+                to understand how a real-world application can
+                be designed to manage and organize information
+                efficiently.
+            </p>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Student Record Management System &nbsp; | &nbsp; About Our Project
+        </div>
+
+    </div>
+
+</body>
+</html>

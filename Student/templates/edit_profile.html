@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        th{
+            width:180px;
+            font-size: 16px;
+            color: #444;
+        }
+        td{
+            padding: 12px;
+        }
+        input{
+            width: 80%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius:8px;
+            outline: none;
+        }
+        input:hover{
+            border-color: #ff6600;
+        }
+        .submit{
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            text-align: center;
+            width: 40%;
+            position: relative;
+            top: 10px;
+        }
+        .back{
+        font-weight: bold;
+        position: fixed;
+        right:20px;
+        bottom: 20px;
+        color: white;
+        background: #2563eb;
+        padding: 12px 20px;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}    
+    </style>
+</head>
+<body>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table width="100%" cellpadding="12" border="2">
+                <tr>
+                    <td align="center" colspan="2">
+                        {% if student.image %}
+                        <img src="{{ student.image.url }}" height="140px" width="140px" style="border-radius:50%; border:4px solid orange">
+                        <br><br>
+                        <input type="file" name="img">
+                        {% endif %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <th align="left">Full Name</th>
+                    <td><input type="text" name="fname" value="{{student.name}}"></td>
+                </tr>
+
+                <tr>
+                    <th align="left">Email</th>
+                    <td><input type="email" name="email" value="{{student.email}}"></td>
+                </tr>
+
+                <tr>
+                    <th align="left">City</th>
+                    <td><input type="text" name="city" value="{{student.city}}"></td>
+                </tr>
+
+                <tr>
+                    <th align="left">Phone</th>            
+                    <td><input type="text" name="phone" value="{{student.phone}}"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <button class="submit">Update Profile</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <a href="{% url 'AdminHome' %}"  class="back">Back to Dashboard</a>
+</body>
+</html>

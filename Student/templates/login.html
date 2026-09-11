@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login-page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.2.0/css/all.min.css" integrity="sha512-F/yRpRY8sctKzP7exU5PLGejwg/QtjDX6CIy/41nApe7JqdZgCcCzJTNq9Rcp/XwbeeTGillGevBakruY15pxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    body{
+    margin:0;
+    padding:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:linear-gradient(30deg,rgb(135, 149, 105) 30%,rgb(202, 189, 118) 30%,rgb(75, 185, 145) 40%);
+    }
+    .login-form{
+        background: #fff;
+        margin:50px 500px;
+        padding:30px;
+        width:500px;
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+        text-align: center;
+        position: relative;
+        left:-10px;
+        top:70px;
+        border-radius: 10px;
+        border: 0 5px 10px rgba(0,0,0,0.3);
+    }
+
+    .input-group{
+        margin-bottom: 18px;
+        text-align: left;
+    }
+
+    .input-group span{
+        font-weight: bold;
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    input{
+        width:96%;
+        padding:10px;
+        border-radius: 7px;
+        border: 1px solid #aaa;
+        font-size: 15px;
+    }
+
+    input:focus{
+        border-color: #38bdf8;
+        outline: none;
+        box-shadow: 0 0 5px #38bdf8;
+    }
+    .remember{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:20px;
+        font-size:14px;
+    }
+.remember a{
+ text-decoration:none;
+ color:#2563eb;
+}
+
+    .login-btn{
+        background: linear-gradient(90deg,#2fffa5,#38bdf8);
+        color:white;
+        padding:12px 15px;
+        border-radius: 7px;
+        text-decoration: none;
+        font-size:18px;
+        position: relative;
+        top:10px;
+        left:35px;
+        display: block;
+        width:80%;
+        transition-property: transform;
+        transition-duration: 0.3s;
+    }
+
+    .login-btn:hover{
+        transform: scale(1.05);
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+    }
+    .link p{
+        margin-top: 25px;
+    }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="login-form">
+        <form method="post">
+            {% csrf_token %}
+            <h2 style="color: blue;"><i class="fa-solid fa-user-shield" style="color:blue;"></i>&nbsp;Login</h2>
+            <div class="input-group">
+                <span>Email</span>
+                <input type="text" name="email" >
+            </div>
+
+            <div class="input-group">
+                <span>Password</span>
+                <input type="password" name="password" placeholder="Enter your Password">
+            </div>
+
+            <div class="remember">
+                <label>
+                <input type="checkbox">
+                Remember Me
+                </label>
+                <a href="{% url 'change_password' %}">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login-btn"><i class="fa-solid fa-arrow-right-to-bracket" style="color: rgb(255, 255, 255);"></i>&nbsp;&nbsp;Login</button>
+        </form>
+
+        <div class="link">
+            <p>
+                Don't have an account?
+            </p>
+        </div>
+    </div>
+    {% if error == "no" %}
+    <script>
+        alert("Login Successfully")
+        window.location="{% url 'AdminHome' %}"
+    </script>
+
+    {% endif %}
+
+    {% if error == "yes" %}
+    <script>
+        alert("Invalid Username and Password")
+    </script>
+    {% endif %}
+</body>
+</html>

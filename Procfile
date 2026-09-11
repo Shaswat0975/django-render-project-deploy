@@ -1,0 +1,1 @@
+web: gunicorn Student_Record_Management_System.wsgi

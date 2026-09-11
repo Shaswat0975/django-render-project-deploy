@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .logo img{
+            height:45px;
+        }
+        .navbar{
+            background: black;
+            position: sticky;
+            top:0px;
+            z-index:10000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);  
+        }
+        .container{
+            width:90%;
+            margin:auto;
+            padding: 15px 0px;
+            display: flex;
+            align-items: center;
+
+        }
+        .logo{
+            display:flex;
+            align-items: center;
+            text-decoration: none;
+
+        }
+        .logo b{
+            color:#fff;
+            margin-left: 10px;
+            font-size: 22px;
+        }
+        .navbar ul{
+            list-style: none;
+        }
+        .navbar ul li{
+            display: inline-block;
+            margin-left: 180px;
+
+        }
+        .navbar ul li a{
+            color:white;
+            text-decoration: none;
+            font-size: 17px;
+            position:relative;
+
+        }
+        .navbar ul li a i{
+            margin-right: 6.5px;
+        }
+        .navbar ul li a:hover{
+            color:#38bdf8;
+
+        }
+        .navbar ul li a::after{
+            content:" ";
+            position: absolute;
+            left:0px;
+            bottom: -5px;
+            width:0px;
+            background: #38bdf8;
+            transition: 2s;
+            height:2px;
+        }
+        .navbar ul li a:hover::after{
+            width:100%;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <a href="" class="logo">
+                <img src="https://www.kindpng.com/picc/m/227-2271076_student-management-system-symbol-hd-png-download.png">
+                <b>Student Records</b>
+            </a>
+            <ul>
+                <li><a href="{% url 'home' %}"><i class="fa-solid fa-house-user"></i>Home</a></li>
+                <li><a href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket"></i>Login</a></li>
+                <li><a href="{% url 'about' %}"><i class="fa-solid fa-circle-info"></i>About</a></li>
+                <li><a href="{% url 'Student_feedback' %}"><i class="fa-solid fa-address-book"></i>Student Feedback</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html> 

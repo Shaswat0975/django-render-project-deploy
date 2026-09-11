@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: url('https://cdn.vectorstock.com/i/500p/48/09/white-hexagon-pattern-background-vector-24484809.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .home-section{
+            width:90%;
+            margin:80px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .left{
+            width: 50%;
+
+        }
+        .right{
+            width: 45%;
+            text-align: right;
+        }
+        .right img{
+            width:100%;
+            border-radius: 10px;
+
+        }
+        .left h1{
+            font-size: 48px;
+            color:#1f2937;
+            margin-bottom: 20px;
+        }
+        .left p{
+            font-size: 18px;
+            color:#555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .btn{
+            display:inline-block;
+            text-decoration: none;
+            background: #2563eb;
+            color:white;
+            padding:14px 28px;
+            margin-right: 20px;
+            transition: 0.3s;
+
+        }
+        .btn:hover{
+            background: #1d4ed8;
+        }
+        .btn2:hover{
+            background: #059669;
+        }
+        .features{
+            width:90%;
+            margin: 100px auto;
+            text-align: center;
+        }
+        .feature-box{
+            display: inline-block;
+            width:280px;
+            background: white;
+            padding: 25px;
+            margin:15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .features h2{
+            font-size: 34px;
+            color: #1f2937;
+        }
+        .feature-box h3{
+            margin-bottom: 15px;
+        }
+        .feature-box p{
+            color: #666;
+        }
+        .stats{
+            width:90%;
+            margin: 80px auto;
+            text-align: center;
+        }
+        .box{
+            display: inline-block;
+            width:220px;
+            background: white;
+            padding: 30px;
+            margin: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        .box h2{
+            color:#2563eb;
+            font-size: 18px;
+        }
+        .box p{
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html'%}
+    <div class="home-section">
+        <div class="left">
+            <h1>Student Records Management System</h1>
+            <p>A student record is a comprehensive, 
+               centralized digital or physical dossier 
+               containing a student's educational history. 
+               It securely tracks demographic information, 
+               academic grades, attendance rates, disciplinary history, 
+               and extracurricular achievements throughout their enrollment.
+            </p>
+            <a href="{% url 'add_student' %}" class="btn">Add Student</a>
+            <a href="{% url 'view_students' %}" class="btn btn2">View Student</a>
+        </div>
+        <div class="right">
+            <img src="https://img.magnific.com/free-vector/online-job-interview_23-2148613123.jpg?semt=ais_hybrid&w=740&q=80">
+        </div>
+    </div>
+    <div class="features">
+        <h2>Our Features</h2>
+        <div class="feature-box">
+            <h3>View Students</h3>
+            <p>Browse and Search all Student easily</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Add Students</h3>
+            <p>Create new student records in just few click</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Update Records</h3>
+            <p>Edit Student information whenever required</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Delete Records</h3>
+            <p>Remove unwanted records SGDGFDHFHG</p>
+        </div>
+        
+    </div>
+
+    <div class="stats">
+        <div class="box">
+            <h2>1000+</h2>
+            <p>Students</p>
+        </div>
+
+        <div class="box">
+            <h2>50+</h2>
+            <p>Teachers</p>
+        </div>
+
+        <div class="box">
+            <h2>25+</h2>
+            <p>Departments</p>
+        </div>
+
+        <div class="box">
+            <h2>100%</h2>
+            <p>Secure Data</p>
+        </div>
+    </div>
+</body>
+</html>
