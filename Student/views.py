@@ -59,7 +59,8 @@ def add_student(request):
         try:
             Student.objects.create(name=n,email=e,username=u,password=ps,college=c,city=city,jdate=jd,total_fee=tf,paid_fee=pf,left_fee=lf,phone=ph,technology=tech,image=img)
             error="no"
-        except:
+        except Exception as e:
+            print("ADD STUDENT ERROR:",e)
             error="yes"
     d={"error":error}
     return render(request,"add_student.html",d)
