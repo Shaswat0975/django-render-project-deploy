@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Student',
+    'cloudinary',
+    'cloudinary_storage',
 
     # 'feedback'
 ]
@@ -141,6 +143,23 @@ SECURE_CONTENT_TYPE_NOSNIFF=True
 
 CSRF_COOKIE_SECURE=True
 SESSION_COOKIE_SECURE=True
+
+CLOUDINARY_STORAGE={
+    'CLOUD_NAME':os.getenv('CLOUD_NAME'),
+    'API_KEY':os.getenv('API_KEY'),
+    'API_SECRET':os.getenv('API_SECRET'),
+}
+
+# DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
+
+STORAGES={
+    "default":{
+        "BACKEND":"cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles":{
+        "BACKEND":"whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 if not DEBUG:
     SECURE_SSL_REDIRECT=True
