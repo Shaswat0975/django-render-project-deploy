@@ -15,16 +15,16 @@ import dj_database_url
 from dotenv import load_dotenv
 import os
 
-import cloudinary
-cloudinary.config(
-    cloud_name=os.getenv("npiwg3o7"),
-    api_key=os.getenv("288489877353583"),
-    api_secret=os.getenv("_cpFZ-fMoWTCGewx0ZL54ezwpms"),
-    secure=True
-)
 load_dotenv()
 
+import cloudinary
 
+cloudinary.config(
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
+    secure=True
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -153,9 +153,9 @@ CSRF_COOKIE_SECURE=True
 SESSION_COOKIE_SECURE=True
 
 CLOUDINARY_STORAGE={
-    'CLOUD_NAME':os.getenv('CLOUD_NAME'),
-    'API_KEY':os.getenv('API_KEY'),
-    'API_SECRET':os.getenv('API_SECRET'),
+    'CLOUD_NAME':os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY':os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET':os.getenv('CLOUDINARY_API_SECRET'),
 }
 
 # DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
