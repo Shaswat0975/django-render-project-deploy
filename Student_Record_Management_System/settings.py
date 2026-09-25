@@ -15,6 +15,13 @@ import dj_database_url
 from dotenv import load_dotenv
 import os
 
+import cloudinary
+cloudinary.config(
+    cloud_name=os.getenv("npiwg3o7"),
+    api_key=os.getenv("288489877353583"),
+    api_secret=os.getenv("_cpFZ-fMoWTCGewx0ZL54ezwpms"),
+    secure=True
+)
 load_dotenv()
 
 
