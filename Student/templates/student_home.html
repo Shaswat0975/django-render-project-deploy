@@ -91,6 +91,8 @@
     </style>
 </head>
 <body>
+    <form method="post">
+        {% csrf_token %}
     <div class="header">
         <h2>Student Dashboard</h2>
         <a href="{% url 'admin_logout' %}">Logout</a>
@@ -125,7 +127,6 @@
              
         </div>
     </div>
-
-
+    </form>
 </body>
 </html>
