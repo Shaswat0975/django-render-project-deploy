@@ -177,17 +177,25 @@ def student_home(request):
 def edit_profile(request):
     if 'student_id' not in request.session:
         return redirect('login')
-    sid=request.session['student_id']
-    stu=Student.objects.get(id=sid)
-    if request.method== "POST":
-        stu.name=request.POST['fname']
-        stu.email=request.POST['email']
-        stu.city=request.POST['city']
-        stu.phone=request.POST['phone']
-        stu.image=request.FILES['img']
+
+    sid = request.session['student_id']
+    stu = Student.objects.get(id=sid)
+
+    if request.method == "POST":
+        stu.name = request.POST.get('fname', stu.name)
+        stu.email = request.POST.get('email', stu.email)
+        stu.city = request.POST.get('city', stu.city)
+        stu.phone = request.POST.get('phone', stu.phone)
+
+        # Image optional hai
+        img = request.FILES.get('img')
+        if img:
+            stu.image = img
+
         stu.save()
-    d={"student":stu}
-    return render(request,"edit_profile.html",d)
+
+    d = {'student': stu}
+    return render(request, 'edit_profile.html', d)
 
 @login_required(login_url='login')
 def fee_details(request):
