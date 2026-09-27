@@ -26,30 +26,42 @@ def about(request):
 
 
 def login(request):
-    error=""
-    if request.method=="POST":
-        u=request.POST['email']
-        p=request.POST['password']
-        # Student Login
-        try:
-            stu=Student.objects.get(username=u,password=p)
-            request.session['student_id']=stu.id
-            return redirect("student_home")
-        except Student.DoesNotExist:
-            pass
-        # Admin Login code
-        admin=auth.authenticate(username=u,password=p)
-        if admin is not None and admin.is_staff:
-            auth.login(request,admin)
-            return redirect('AdminHome')
-        
-    return render(request,"login.html",)
+    error = ""
+    role = request.GET.get('role', request.POST.get('role', ''))
 
-@login_required(login_url='login')
+    if request.method == "POST":
+        u = request.POST['email']
+        p = request.POST['password']
+
+        # Student Login
+        if role == "student":
+            try:
+                stu = Student.objects.get(username=u, password=p)
+                request.session['student_id'] = stu.id
+                return redirect("student_home")
+            except Student.DoesNotExist:
+                error = "Invalid Student Username or Password"
+
+        # Admin Login
+        elif role == "admin":
+            admin = auth.authenticate(username=u, password=p)
+
+            if admin is not None and admin.is_staff:
+                auth.login(request, admin)
+                return redirect("AdminHome")
+            else:
+                error = "Invalid Admin Username or Password"
+
+    return render(request, "login.html", {
+        "error": error,
+        "role": role
+    })
+
+@login_required(login_url='/login?role=admin')
 def AdminHome(request):
     return render(request,"AdminHome.html")
 
-@login_required(login_url='login')
+@login_required(login_url='/login?role=admin')
 def add_student(request):
     error=""
     if request.method=="POST":
@@ -75,13 +87,13 @@ def add_student(request):
     d={"error":error}
     return render(request,"add_student.html",d)
 
-@login_required(login_url='login')
+@login_required(login_url='/login?role=admin')
 def view_students(request):
     data=Student.objects.all()
     d={'data':data}
     return render(request,"view_students.html",d)
 
-@login_required(login_url='login')
+@login_required(login_url='/login?role=admin')
 def edit_student(request,id):
     data=Student.objects.get(id=id)
     error=""
@@ -116,7 +128,7 @@ def edit_student(request,id):
             error="yes"
     return render(request,"edit_student.html",{'data':data,'erroe':error})
 
-@login_required(login_url='login')
+@student_login_required
 def Student_feedback(request):
     error=""
     if request.method=="POST":
@@ -131,23 +143,23 @@ def Student_feedback(request):
     d={"error":error}
     return render(request,"Student_feedback.html",d)
 
-@login_required(login_url='login')
+@login_required(login_url='/login?role=admin')
 def del_student(request,id):
     data=Student.objects.get(id=id)
     data.delete()
     return redirect('view_students')
 
-@login_required(login_url='login')
+@login_required(login_url='/login?role=admin')
 def view_feedback(request): 
     data=Feedback.objects.all()
     d={'data':data}
     return render(request,"view_feedback.html",d)
 
-@login_required(login_url='login')
+@login_required(login_url='/login?role=admin')
 def search_students(request):
     return render(request,"search_students.html",)
 
-@login_required(login_url='login')
+@login_required(login_url='/login?role=admin')
 def search_records(request):
     n=request.POST['sname']
     data=Student.objects.filter(name__icontains=n)
