@@ -9,7 +9,7 @@ def student_login_required(view_func):
     @wraps(view_func)
     def wrapper(request, *args, **kwargs):
         if not request.session.get('student_id'):
-            return redirect('/login?role=student')
+            return redirect('/login?role=student&next=Student_feedback')
         return view_func(request, *args, **kwargs)
     return wrapper
 
@@ -28,6 +28,7 @@ def about(request):
 def login(request):
     error = ""
     role = request.GET.get('role', request.POST.get('role', 'admin'))
+    next_page=request.GET.get('next',request.POST.get('next',''))
 
     if request.method == "POST":
         u = request.POST['email']
@@ -38,6 +39,8 @@ def login(request):
             try:
                 stu = Student.objects.get(username=u, password=p)
                 request.session['student_id'] = stu.id
+                if next_page:
+                    return redirect(next_page)
                 return redirect("student_home")
             except Student.DoesNotExist:
                 error = "Invalid Student Username or Password"
@@ -54,7 +57,8 @@ def login(request):
 
     return render(request, "login.html", {
         "error": error,
-        "role": role
+        "role": role,
+        "next_page":next_page
     })
 
 @login_required(login_url='/login?role=admin')

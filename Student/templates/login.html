@@ -92,7 +92,8 @@
     <div class="login-form">
         <form method="post">
             {% csrf_token %}
-            <input type="hidden" name="role" value="{{ role }}"
+            <input type="hidden" name="role" value="{{ role }}">
+            <input type="hidden" name="next" value="{{ next_page }}">
             {% if role == "admin" %}
 
             <h2 style="color: blue;">
@@ -134,6 +135,12 @@
             </div>
 
             <button type="submit" class="login-btn"><i class="fa-solid fa-arrow-right-to-bracket" style="color: rgb(255, 255, 255);"></i>&nbsp;&nbsp;Login</button>
+            <div style="text-align:center; margin-top:15px;">
+                <a href="{% url 'login' %}?role=student"
+                style="color:blue; text-decoration:none;">
+                    Student Login
+                </a>
+            </div>
         </form>
 
         <div class="link">
