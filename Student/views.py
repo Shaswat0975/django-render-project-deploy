@@ -3,6 +3,16 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User,auth
 from .models import Student,Feedback
 from django.contrib.auth.decorators import login_required
+from functools import wraps
+
+def student_login_required(view_func):
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+        if not request.session.get('student_id'):
+            return redirect('login')
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
 from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 import datetime
@@ -164,16 +174,18 @@ def update_password(request):
     user.save()
     return redirect('login')
 
-@login_required(login_url='login')
+@student_login_required
 def student_home(request):
-    if 'student_id' not in request.session:
+    sid = request.session.get('student_id')
+
+    if not sid:
         return redirect('login')
-    sid=request.session['student_id']
-    stu=Student.objects.get(id=sid)
 
-    return render(request,"student_home.html",{'student':stu})
+    stu = Student.objects.get(id=sid)
 
-@login_required(login_url='login')
+    return render(request, "student_home.html", {'student': stu})
+
+@student_login_required
 def edit_profile(request):
     if 'student_id' not in request.session:
         return redirect('login')
@@ -197,7 +209,7 @@ def edit_profile(request):
     d = {'student': stu}
     return render(request, 'edit_profile.html', d)
 
-@login_required(login_url='login')
+@student_login_required
 def fee_details(request):
     sid=request.session.get('student_id')
     if sid is None:
@@ -205,7 +217,7 @@ def fee_details(request):
     stu=Student.objects.get(id=sid)
     return render(request,"fee_details.html",{"student":stu})
 
-@login_required(login_url='login')
+@student_login_required
 def fee_receipt(request):
     sid=request.session.get('student_id')
     if sid is None:
@@ -271,11 +283,11 @@ def fee_receipt(request):
     pdf.save()
     return response
 
-@login_required(login_url='login')
+@student_login_required
 def change_user_password(request):
     return render(request,"change_user_password.html")
 
-@login_required(login_url='login')
+@student_login_required
 def user_update_password(request):
     sid=request.session.get('student_id')
     if sid is None:
@@ -292,3 +304,7 @@ def user_update_password(request):
             stu.save()
             error="done"
     return render(request,"change_user_password.html",{"error":error})
+
+def student_logout(request):
+    request.session.pop('student_id',None)
+    return redirect('login')

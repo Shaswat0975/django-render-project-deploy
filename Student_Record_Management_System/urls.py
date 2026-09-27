@@ -45,6 +45,7 @@ urlpatterns = [
     path("student_fee",fee_details,name='student_fee'),
     path("fee_receipt",fee_receipt,name='fee_receipt'),
     path("change_user_password",change_user_password,name='change_user_password'),
-    path("user_update_password",user_update_password,name='user_update_password')
+    path("user_update_password",user_update_password,name='user_update_password'),
+    path("student_logout",student_logout,name="student_logout"),
 ]
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
