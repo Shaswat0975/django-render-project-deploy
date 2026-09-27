@@ -9,7 +9,7 @@ def student_login_required(view_func):
     @wraps(view_func)
     def wrapper(request, *args, **kwargs):
         if not request.session.get('student_id'):
-            return redirect('login')
+            return redirect('/login?role=student')
         return view_func(request, *args, **kwargs)
     return wrapper
 
@@ -27,7 +27,7 @@ def about(request):
 
 def login(request):
     error = ""
-    role = request.GET.get('role', request.POST.get('role', ''))
+    role = request.GET.get('role', request.POST.get('role', 'admin'))
 
     if request.method == "POST":
         u = request.POST['email']
